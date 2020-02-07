@@ -1,9 +1,14 @@
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
+
 const mongoose = require('mongoose')
 var url = "mongodb://localhost:27017/pika-pika";
+const consumer = require('./config/connection').consumer
+var signin = require('./auth/auth').signIn
+var register = require('./auth/auth').register
 
+let funcstionMap = {
+	'signin': signin,
+	'register': register
+}
 
 mongoose.connect(url);
 //attach lister to connected event
@@ -11,18 +16,16 @@ mongoose.connection.once('connected', function () {
 	console.log("Connected to database")
 });
 
-const app = express();
-
-//Middleware setup
-
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-
-//Routes
-
-app.use('/api/users', require('./routes/users'))
-//Start the server
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT);
-console.log(`Server is running on ${PORT}`);
+consumer.on('message', (message) => {
+	console.log('Message on Topic -> ' + message.topic)
+	console.log(message.value)
+	let value = JSON.parse(message.value)
+	funcstionMap[value['key']](value['data']).then((data) => {
+		console.log(data)
+	}).catch((error) => {
+		console.log(error)
+	})
+})
+consumer.on('error', (error) => {
+	console.log('error', error)
+})
