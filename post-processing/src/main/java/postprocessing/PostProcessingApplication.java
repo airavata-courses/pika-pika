@@ -10,16 +10,19 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class PostProcessingApplication {
 
+    public static MessageProducer producer;
+    public static MessageListener listener;
+    static ConfigurableApplicationContext context;
+
+    public static void initialize() {
+        producer = context.getBean(MessageProducer.class);
+        listener = context.getBean(MessageListener.class);
+    }
+
     public static void main(String[] args) throws InterruptedException {
 
-        ConfigurableApplicationContext context = SpringApplication.run(PostProcessingApplication.class, args);
-        MessageProducer producer = context.getBean(MessageProducer.class);
-        MessageListener listener = context.getBean(MessageListener.class);
-        while(true) {
-            producer.sendMessage("Hello, World!");
-            Thread.sleep(10000);
-        }
-
+        context = SpringApplication.run(PostProcessingApplication.class, args);
+        initialize();
     }
 
     @Bean
