@@ -1,5 +1,6 @@
 package postprocessing;
 
+import ucar.nc2.NCdump;
 import ucar.nc2.constants.FeatureType;
 import ucar.nc2.dt.RadialDatasetSweep;
 import ucar.nc2.dt.TypedDatasetFactory;
@@ -7,11 +8,11 @@ import ucar.nc2.util.CancelTask;
 
 public class NetCDFHandler {
 
-    public static void main(String[] args) {
+    public NetCDFHandler() {
 
 	      try {
 
-	        String fileIn = "KPAH20080330_133313_V03";
+	        String fileIn = "/Users/akshay/Desktop/pika-pika/post-processing/KMKX20191225_105018_V06";
 	      
 	        CancelTask emptyCancelTask = new CancelTask() {
 	            public boolean isCancel() {
@@ -20,14 +21,12 @@ public class NetCDFHandler {
 	            public void setError(String arg0) {
 	            }
 				@Override
-				public void setProgress(String arg0, int arg1) {
-					// TODO Auto-generated method stub
-					
+				public void setProgress(String arg0, int arg1){
 				}
 	        };
-	       
-	        
-	        
+
+
+	      //  NCdump.print(fileIn, System.out);
 	        // open the file and represent as a 
 	        // RadialDatasetSweep object        
 	        RadialDatasetSweep rds = (RadialDatasetSweep)
@@ -83,6 +82,10 @@ public class NetCDFHandler {
 	             float azimuth = sweep.getAzimuth(i);
 	             float elevation = sweep.getElevation(i);
 	             float[] data = sweep.readData(i);
+
+	             System.out.println("azimuth: " + azimuth);
+				 System.out.println("elevation: " + elevation);
+				 System.out.println("data: " + data.length);
 	             // data.length should equal ngates
 
 	         }
