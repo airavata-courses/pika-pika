@@ -10,9 +10,9 @@ try {
 	producer = new Producer(client);
 	consumer = new Consumer(
 		client,
-		[{ topic: 'user-management-service', offset: 3, partition: 0 }],
+		[{ topic: 'user-management-service', offset: 0, partition: 0 }],
 		{
-			autoCommit: false,
+			autoCommit: true,
 			fetchMaxWaitMs: 1000,
 			fetchMaxBytes: 102400,
 			encoding: 'utf8',
