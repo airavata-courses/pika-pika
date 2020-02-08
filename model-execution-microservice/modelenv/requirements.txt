@@ -1,0 +1,4 @@
+pykafka
+boto3
+botocore
+metpy
