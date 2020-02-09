@@ -2,3 +2,5 @@ pykafka
 boto3
 botocore
 metpy
+matplotlib
+pyimgur
