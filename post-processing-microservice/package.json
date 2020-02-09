@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/airavata-courses/pika-pika#readme",
   "dependencies": {
+    "imgur": "^0.3.1",
     "kafka-node": "^5.0.0",
     "path": "^0.12.7",
     "request": "^2.88.0"
