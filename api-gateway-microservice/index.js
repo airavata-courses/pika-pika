@@ -3,12 +3,14 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const request=require('request')
 const consumer=require('./connection').consumer
+const cors=require('cors')
 global.responseMap={}
 
 const PORT = 4000
 
 const app = express()
 app.use(bodyParser.json())
+app.use(cors())
 
 app.listen(process.env.PORT || PORT, function() {
     console.log("Server is running on Port: " + PORT)
