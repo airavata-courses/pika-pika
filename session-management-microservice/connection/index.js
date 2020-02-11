@@ -15,10 +15,10 @@ try {
 	consumer = new Consumer(
 		client,
 		[
-			{ topic: 'data-retrieval-service', offset: 7, partition: 0 },
-			{ topic: 'model-execution-service', offset: 14, partition: 0 },
-			{ topic: 'post-process-service', offset: 26, partition: 0 },
-			// { topic: 'session-management-service', offset: 0, partition: 0 }
+			{ topic: 'data-retrieval-service', offset: 0, partition: 0 },
+			{ topic: 'model-execution-service', offset: 0, partition: 0 },
+			{ topic: 'post-processing-service', offset: 0, partition: 0 },
+			{ topic: 'session-management-service', offset: 0, partition: 0 }
 		],
 		{
 			autoCommit: true,

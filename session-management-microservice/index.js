@@ -6,7 +6,7 @@ const updateResult=require('./utility').updateResult
 const functionMap={
 	'data-retrieval-service':addJobData,
 	'model-execution-service':updateJobData,
-	'post-process-service':updateJobData,
+	'post-processing-service':updateJobData,
 	'session-management-service':updateResult
 }
 

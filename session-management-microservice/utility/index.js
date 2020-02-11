@@ -7,7 +7,7 @@ const addJobData=(jobData)=>{
 const updateJobData=(jobData)=>{
 	let _id='J-'+jobData['jobID']
 	let collection=mongoDb.collection('job-data')
-    return collection.updateOne({_id:_id},{'$set':{'status':jobData['status']}})
+    return collection.updateOne({_id:_id},{'$set':jobData})
 }
 
 const updateResult=(resultData)=>{
