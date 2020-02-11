@@ -10,7 +10,7 @@ let functionMap = {
 	'register': register
 }
 
-mongoose.connect(url);
+mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true});
 //attach lister to connected event
 mongoose.connection.once('connected', function () {
 	console.log("Connected to database")
