@@ -8,6 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,7 +23,7 @@ function Copyright() {
 		<Typography variant="body2" color="textSecondary" align="center">
 			{'Copyright © '}
 			<Link color="inherit" href="https://material-ui.com/">
-				Your Website
+				Pika-Pika
       </Link>{' '}
 			{new Date().getFullYear()}
 			{'.'}
@@ -31,6 +32,14 @@ function Copyright() {
 }
 
 const useStyles = makeStyles(theme => ({
+	image: {
+		backgroundImage: 'url(https://goldwallpapers.com/uploads/posts/pokemon-pikachu-wallpapers/pokemon_pikachu_wallpapers_002.jpg)',
+		backgroundRepeat: 'no-repeat',
+		backgroundColor:
+			theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+	},
 	paper: {
 		marginTop: theme.spacing(8),
 		display: 'flex',
@@ -76,8 +85,9 @@ const SignUp = (props) => {
 
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Sign up
+					Register
         </Typography>
+			<Card style={{ padding: "10px" }}>
 				<form className={classes.form} noValidate onSubmit={onSubmit}>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
@@ -108,10 +118,10 @@ const SignUp = (props) => {
 							/>
 						</Grid>
 						<Grid item xs={12}>
-							<FormControlLabel
+							{/* <FormControlLabel
 								control={<Checkbox value="allowExtraEmails" color="primary" />}
 								label="I want to receive inspiration, marketing promotions and updates via email."
-							/>
+							/> */}
 						</Grid>
 					</Grid>
 					<Button
@@ -131,6 +141,7 @@ const SignUp = (props) => {
 						</Grid>
 					</Grid>
 				</form>
+				</Card>
 			</div>
 			<Box mt={5}>
 				<Copyright />

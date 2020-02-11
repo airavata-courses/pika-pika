@@ -13,17 +13,19 @@ import Card from '@material-ui/core/Card';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { login } from '../../actions/auth'
+import { login } from '../actions/auth'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import logo from '../../source.gif'
+import logo from '../source.gif'
+
+import store from '../store'
 
 function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
 			{'Copyright © '}
 			<Link color="inherit" href="https://material-ui.com/">
-				Your Website
+				Pika-Pika
       </Link>{' '}
 			{new Date().getFullYear()}
 			{'.'}
@@ -36,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 		height: '100vh',
 	},
 	image: {
-		backgroundImage: 'url(https://source.unsplash.com/random)',
+		backgroundImage: 'url(https://goldwallpapers.com/uploads/posts/pokemon-pikachu-wallpapers/pokemon_pikachu_wallpapers_002.jpg)',
 		backgroundRepeat: 'no-repeat',
 		backgroundColor:
 			theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
@@ -44,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 		backgroundPosition: 'center',
 	},
 	paper: {
-		margin: theme.spacing(8, 4),
+		margin: theme.spacing(4, 4),
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -76,6 +78,7 @@ const SignIn = (props) => {
 			email: email,
 			password: password
 		}
+		console.log(store.getState())
 		props.login(user)
 
 	}
@@ -94,7 +97,7 @@ const SignIn = (props) => {
 						Sign in
 
           </Typography>
-					<Card style={{ padding: "20px" }}>
+					<Card style={{ padding: "10px" }}>
 						<form className={classes.form} noValidate onSubmit={onSubmit}>
 							<TextField
 								variant="outlined"
