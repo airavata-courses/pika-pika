@@ -9,9 +9,9 @@ try {
 	producer = new Producer(client);
 	consumer = new Consumer(
 		client,
-		[{ topic: 'postprocess', offset: 3, partition: 0 }],
+		[{ topic: 'post-processing-service', offset: 0, partition: 0 }],
 		{
-			autoCommit: false,
+			autoCommit: true,
 			fetchMaxWaitMs: 1000,
 			fetchMaxBytes: 1024000,
 			encoding: 'utf8',
