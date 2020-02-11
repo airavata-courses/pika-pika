@@ -10,11 +10,11 @@ try {
 	producer = new Producer(client);
 	consumer = new Consumer(
 		client,
-		[{ topic: 'front-end-data-retrieval-service', offset: 12, partitions: 1 }],
+		[{ topic: 'front-end-data-retrieval-service', offset: 0, partitions: 1 }],
 		{
 			autoCommit: false,
 			fetchMaxWaitMs: 1000,
-			fetchMaxBytes: 1024000000,
+			fetchMaxBytes: 102400,
 			encoding: 'utf8',
 			fromOffset: true
 		}
