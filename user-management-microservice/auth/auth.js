@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 var settings = require('../config/settings')
-const producer=require('../config/connection').producer
+const producer = require('../config/connection').producer
 
 let register = async (data) => {
 	const email = data.email;
@@ -53,36 +53,41 @@ let signIn = async (data) => {
 	}
 }
 
-let sendPayload=async (kafka_topic,message)=>{
+let sendPayload = async (kafka_topic, message) => {
 	let payloads = [
 		{
-		topic: kafka_topic,
-		messages: message
+			topic: kafka_topic,
+			messages: message
 		}
 	]
 	producer.send(payloads, (error, data) => {
 		if (error) {
 			throw new Error(error)
 		} else {
-		console.log('[kafka-producer -> '+kafka_topic+']: broker update success')
-		return
+			console.log('[kafka-producer -> ' + kafka_topic + ']: broker update success')
+			return
 		}
 	})
 }
 
 
-let updateRecord =  async (data) => {
+let updateRecord = async (data) => {
 
 	const jobId = data.jobId
 	const email = data.email
-	var query = {"email" : email}
+	var query = { "email": email }
 
-	User.findOneAndUpdate(query, { $push: { jobId : jobId }}, function (err) {
-		if (err){
-			console.log("User doesn't exists")
-			throw new Error("User doesn't exists")
-		}
-	})
+	let user = await User.findOne({ email });
+	if (user) {
+		User.update(
+			{ email: email },
+			{ $push: { jobId: jobId } }
+		).then((data) => {
+			console.log(data)
+		}).catch((error) => {
+			console.log(error)
+		})
+	}
 }
 
-module.exports = { signIn, register, sendPayload, updateRecord}
+module.exports = { signIn, register, sendPayload, updateRecord }

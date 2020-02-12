@@ -9,6 +9,9 @@ const UserSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: true
+	},
+	jobId: {
+		type: Array
 	}
 });
 UserSchema.methods.isValidPassword = async function (pwd) {
