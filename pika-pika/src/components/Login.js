@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -82,6 +82,14 @@ const SignIn = (props) => {
 		props.login(user)
 
 	}
+	useEffect(() => {
+		console.log(props.auth)
+		if(props.auth.isAuthenticated)
+		{
+			props.history.push('/dashboard')
+		}
+        // setRadar(props.radar)
+    },[props.auth])
 
 	return (
 		<Grid container component="main" className={classes.root}>

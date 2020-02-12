@@ -40,27 +40,21 @@ function GoogleMap(props){
     const [loc,setLoc]=useState({lat:0,lng:0})
     // const [location,setLocation]=React.useState();
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(displayLocationInfo)
-    }
-    function displayLocationInfo(position) {
-      const lon = position.coords.longitude
-      const lat = position.coords.latitude
-      setLoc({lat:lat,lng:lon})
-      console.log(`longitude: ${lon} | latitude: ${lat}`)
 
-      props.getweather({lat:lat,lon:lon})
-      console.log(store.getState())
-    }
-    // useEffect(() => {
-    //     axios.post('/getGeoLoc',{'address':props.address})
-    //     .then((res)=>{
-    //         setLoc(res['data'])
-    //     }).catch((err)=>
-    //     {
-    //         console.error(err)
-    //     })
-    // },[props.address])
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(displayLocationInfo)
+          }
+          function displayLocationInfo(position) {
+            const lon = position.coords.longitude
+            const lat = position.coords.latitude
+            setLoc({lat:lat,lng:lon})
+            console.log(`longitude: ${lon} | latitude: ${lat}`)
+      
+            props.getweather({lat:lat,lon:lon})
+            console.log(store.getState())
+          }
+    },[])
 
     return (
         <React.Fragment>

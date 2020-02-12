@@ -43,7 +43,7 @@ function WeatherData(props){
 
     return (
       <div className={classes.root}>
-        <Fab variant="extended" className={classes.fab}>
+        <Fab color='primary' variant="extended" className={classes.fab}>
             {"Temperature : "+Math.round(props.weather['temp']-273)+'°C'}
             <br/> 
             {"Feels Like : "+Math.round(props.weather['feels_like']-273)+'°C'}

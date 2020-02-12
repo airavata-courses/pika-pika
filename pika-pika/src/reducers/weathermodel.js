@@ -19,7 +19,8 @@ export default function (state = initialState, action) {
 			}
 		case WEATHER_DATA_FAIL: 
 			return {
-				...state			}
+                ...state			
+            }
 		default:
 			return state;
 

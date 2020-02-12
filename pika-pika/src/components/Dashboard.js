@@ -21,8 +21,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './ListItems';
 import { withRouter,Switch,Route } from "react-router-dom";
 import GoogleMap from "./Map.js";
-import Login from './Login';
-import {JobData as ModelExecution} from "./ModelExecution";
+import ModelExecution from './ModelExecution';
+import {JobData} from "./JobResults";
 // import Deposits from './Deposits';
 // import Orders from './Orders';
 
@@ -147,7 +147,7 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Pika-Pika
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
