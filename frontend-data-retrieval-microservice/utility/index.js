@@ -8,7 +8,7 @@ const fetchRadar = date => {
 	// Create the parameters for calling listObjects
 	var bucketParams = {
 		Bucket: "noaa-nexrad-level2",
-		Prefix: date
+		Prefix: date.date
 	};
 
 	return new Promise((resolve, reject) => {
@@ -16,7 +16,7 @@ const fetchRadar = date => {
 			bucketParams,
 			(error, data) => {
 				if (error) {
-					reject({ error: error });
+					return reject({ error: error });
 				}
 
 				let payloads = [
@@ -54,7 +54,7 @@ const fetchNEXRADFiles = (data) => {
 			bucketParams,
 			(error, data) => {
 				if (error) {
-					reject({ error: error });
+					return reject({ error: error });
 				}
 
 				let payloads = [
@@ -84,7 +84,7 @@ const fetchCurrentWeather = (data) => {
 	return new Promise((resolve, reject) => {
 		axios.get(url).then((res, err) => {
 			if (err)
-				reject({ error: err });
+				return reject({ error: err });
 			return resolve(res.data.main);
 
 		}).catch(error => {
