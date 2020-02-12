@@ -18,7 +18,7 @@ try {
 			{ topic: 'data-retrieval-service', offset: 0, partition: 0 },
 			{ topic: 'model-execution-service', offset: 0, partition: 0 },
 			{ topic: 'post-processing-service', offset: 0, partition: 0 },
-			{ topic: 'session-management-service', offset: 15, partition: 0 }
+			{ topic: 'session-management-service', offset: 0, partition: 0 }
 		],
 		{
 			autoCommit: false,
