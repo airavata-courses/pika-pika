@@ -1,29 +1,75 @@
-const addJobData=(jobData)=>{
-	jobData['_id']='J-'+jobData['jobID']
-	let collection=mongoDb.collection('job-data')
+const producer = require('../connection').producer
+
+
+const addJobData = (jobData) => {
+	jobData['_id'] = 'J-' + jobData['jobID']
+	let collection = mongoDb.collection('job-data')
 	return collection.insertOne(jobData)
 }
 
-const updateJobData=(jobData)=>{
-	let _id='J-'+jobData['jobID']
-	let collection=mongoDb.collection('job-data')
-    return collection.updateOne({_id:_id},{'$set':jobData})
+const updateJobData = (jobData) => {
+	let _id = 'J-' + jobData['jobID']
+	let collection = mongoDb.collection('job-data')
+	return collection.updateOne({ _id: _id }, { '$set': jobData })
 }
 
-const updateResult=(resultData)=>{
-	if(resultData['key']=='fetch')
-	{
-		return fetchResult(resultData['jobID'])
+const updateResult = (resultData) => {
+	if (resultData['data']['key'] == 'fetch') {
+		return fetchResult(resultData)
 	}
-	resultData['status']='Complete'
+	resultData['status'] = 'Complete'
 	return updateJobData(resultData)
 }
 
-const fetchResult=(jobID)=>{
-	let _id='J-'+jobID
-	let collection=mongoDb.collection('job-data')
-    return collection.findOne({_id:_id})
+const fetchResult = (resultData) => {
+	return new Promise((resolve, reject) => {
+		let _id = 'J-' + resultData['jobID']
+		let collection = mongoDb.collection('job-data')
+		collection.findOne({ _id: _id }).then((data) => {
+			payloadMessage = {
+				error: null,
+				data: data,
+				resId: resultData['resId']
+			}
+			sendPayload('api-gateway-service', JSON.stringify(payloadMessage)).then((data) => {
+				resolve()
+			}).catch((error) => {
+
+				console.log(error)
+				reject(error)
+			})
+		}).catch((error) => {
+			payloadMessage = {
+				error: error,
+				data: null,
+				resId: resultData['resId']
+			}
+			sendPayload('api-gateway-service', JSON.stringify(payloadMessage)).then((data) => {
+				resolve()
+			}).catch((error) => {
+				console.log(error)
+				reject(error)
+			})
+		})
+	})
+
 }
 
+let sendPayload = async (kafka_topic, message) => {
+	let payloads = [
+		{
+			topic: kafka_topic,
+			messages: message
+		}
+	]
+	producer.send(payloads, (error, data) => {
+		if (error) {
+			throw new Error(error)
+		} else {
+			console.log('[kafka-producer -> ' + kafka_topic + ']: broker update success')
+			return
+		}
+	})
+}
 
-module.exports={addJobData,updateJobData,updateResult}
+module.exports = { addJobData, updateJobData, updateResult }
