@@ -24,9 +24,7 @@ const updateResult = (resultData) => {
 
 const fetchResult = (resultData) => {
 	return new Promise((resolve, reject) => {
-		//console.log(resultData.data)
 		let _id = 'J-' + resultData['data']['jobID']
-		//console.log(_id);
 		let collection = mongoDb.collection('job-data')
 		collection.findOne({ _id: _id }).then((data) => {
 			payloadMessage = {
@@ -34,7 +32,6 @@ const fetchResult = (resultData) => {
 				data: data,
 				resId: resultData['resId']
 			}
-			console.log(data);
 			sendPayload('api-gateway-service', JSON.stringify(payloadMessage)).then((data) => {
 				resolve()
 			}).catch((error) => {
