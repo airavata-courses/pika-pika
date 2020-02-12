@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 var settings = require('../config/settings')
 const producer=require('../config/connection').producer
 
@@ -69,4 +70,19 @@ let sendPayload=async (kafka_topic,message)=>{
 	})
 }
 
-module.exports = { signIn, register, sendPayload }
+
+let updateRecord =  async (data) => {
+
+	const jobId = data.jobId
+	const email = data.email
+	var query = {"email" : email}
+
+	User.findOneAndUpdate(query, { $push: { jobId : jobId }}, function (err) {
+		if (err){
+			console.log("User doesn't exists")
+			throw new Error("User doesn't exists")
+		}
+	})
+}
+
+module.exports = { signIn, register, sendPayload, updateRecord}

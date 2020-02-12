@@ -7,7 +7,8 @@ var sendPayload=require('./auth/auth').sendPayload
 
 let functionMap = {
 	'signin': signin,
-	'register': register
+	'register': register,
+	'updateRecord' : updateRecord
 }
 
 mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true});
