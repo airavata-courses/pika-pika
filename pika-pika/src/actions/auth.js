@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL } from './types'
+import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, UPDATE_RECORD_SUCCESS, UPDATE_RECORD_FAIL } from './types'
 
 export const register = ({ email, password }) => async dispatch => {
 	const config = {
@@ -34,5 +34,23 @@ export const login = ({ email, password }) => async dispatch => {
 	} catch (err) {
 
 		dispatch({ type: LOGIN_FAIL })
+	}
+}
+
+export const updateUser = ({ email, jobId }) => async dispatch => {
+	const config = {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}
+	const body = JSON.stringify({ email, jobId })
+	try {
+		console.log('test')
+		const res = await axios.post('http://localhost:4000/api/user/updateRecord', body, config);
+		console.log(res)
+		dispatch({ type: UPDATE_RECORD_SUCCESS, payload: res.data })
+	} catch (err) {
+
+		dispatch({ type: UPDATE_RECORD_FAIL })
 	}
 }
