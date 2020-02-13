@@ -1,0 +1,29 @@
+{
+  "name": "data-retrieval-service",
+  "version": "1.0.0",
+  "description": "\"Microservice to fetch data\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airavata-courses/pika-pika.git"
+  },
+  "author": "pika-pika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airavata-courses/pika-pika/issues"
+  },
+  "homepage": "https://github.com/airavata-courses/pika-pika#readme",
+  "dependencies": {
+    "aws-sdk": "^2.610.0",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "kafka-node": "^5.0.0",
+    "path": "^0.12.7",
+    "request": "^2.88.0"
+  }
+}
