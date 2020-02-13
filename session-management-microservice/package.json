@@ -1,0 +1,26 @@
+{
+  "name": "session-management-microservice",
+  "version": "1.0.0",
+  "description": "\"Microservice to manage session\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airavata-courses/pika-pika.git"
+  },
+  "author": "pika-pika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airavata-courses/pika-pika/issues"
+  },
+  "homepage": "https://github.com/airavata-courses/pika-pika#readme",
+  "dependencies": {
+    "kafka-node": "^5.0.0",
+    "mongodb": "^3.5.2",
+    "path": "^0.12.7",
+    "request": "^2.88.0"
+  }
+}
