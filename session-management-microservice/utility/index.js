@@ -23,9 +23,9 @@ const updateResult = (resultData) => {
 
 const fetchResult = (resultData) => {
 	return new Promise((resolve, reject) => {
-		let _id = 'J-' + resultData['data']['jobID']
+		let jobIDs=resultData['data']['jobID']
 		let collection = mongoDb.collection('job-data')
-		collection.findOne({ _id: _id }).then((data) => {
+		collection.find({ jobID: {'$in':jobIDs } }).toArray().then((data) => {
 			payloadMessage = {
 				error: null,
 				data: data,
