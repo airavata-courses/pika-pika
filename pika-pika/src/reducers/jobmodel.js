@@ -1,18 +1,20 @@
-import { LAUNCH_SUCCESS,LAUNCH_FAIL } from '../actions/types'
+import { LAUNCH_SUCCESS, LAUNCH_FAIL } from '../actions/types'
 
-const initialState = {}
+const initialState = { jobID: null }
 
 export default function (state = initialState, action) {
 	const { type, payload } = action;
 	switch (type) {
-		case LAUNCH_SUCCESS: 
+		case LAUNCH_SUCCESS:
 			return {
-				...payload
-            }
-		case LAUNCH_FAIL: 
+				...payload,
+				jobID: payload.jobID
+			}
+
+		case LAUNCH_FAIL:
 			return {
-                ...state			
-            }
+				...state
+			}
 		default:
 			return state;
 
