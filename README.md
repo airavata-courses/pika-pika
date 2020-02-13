@@ -28,5 +28,11 @@ After you are inside the docker container bash, perform the following commands:
 ```bash
 kafka-topics --zookeeper 127.0.0.1:2181 --create --topic data-retrieval-service --partitions 1 --replication-factor 1
 kafka-topics --zookeeper 127.0.0.1:2181 --create --topic model-execution-service --partitions 1 --replication-factor 1
+kafka-topics --zookeeper 127.0.0.1:2181 --create --topic user-management-service --partitions 1 --replication-factor 1
+kafka-topics --zookeeper 127.0.0.1:2181 --create --topic post-processing-service --partitions 1 --replication-factor 1
+kafka-topics --zookeeper 127.0.0.1:2181 --create --topic session-management-service --partitions 1 --replication-factor 1
+kafka-topics --zookeeper 127.0.0.1:2181 --create --topic api-gateway-service --partitions 1 --replication-factor 1
+kafka-topics --zookeeper 127.0.0.1:2181 --create --topic front-end-data-retrieval-service --partitions 1 --replication-factor 1
+
 ```
 
