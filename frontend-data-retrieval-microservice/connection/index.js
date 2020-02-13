@@ -20,8 +20,8 @@ try {
 		}
 	)
 	AWS.config.update({
-		'accessKeyId': 'AKIAITP4A4YJNLYIUYFA',
-		'secretAccessKey': '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'
+		'accessKeyId': 'AKIAIXFXCUWLRCMD46LA',
+		'secretAccessKey': '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'
 	})
 
 } catch (error) {
