@@ -14,7 +14,6 @@ const updateJobData = (jobData) => {
 }
 
 const updateResult = (resultData) => {
-	console.log(resultData)
 	if (resultData['data']['key'] == 'fetch') {
 		return fetchResult(resultData)
 	}
