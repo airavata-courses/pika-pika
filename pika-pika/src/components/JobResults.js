@@ -46,15 +46,17 @@ function JobResults(props) {
 	useEffect(() => {
 		// getBills()
 		// res()
-		
+		// props.getResults(props.auth.jobId);
+		props.getJobList({email:props.auth.user})
 		if(props.auth.jobId.length!=0){
-			console.log(props)
+			// console.log(props)
 			props.getResults(props.auth.jobId);
-		}else{
-			props.getJobList({email:props.auth.user})
 		}
+		// else{
+		// 	props.getJobList({email:props.auth.user})
+		// }
 		// setUrl(props.result.url)
-	}, [props.auth.jobId])
+	}, [props.auth.jobId.length])
 	const res = () => {
 
 		// const config = {
@@ -114,6 +116,7 @@ function JobResults(props) {
 					<CardMedia
 						className={classes.media}
 						image={res.url}
+						alt="Failed"
 						// image="/static/images/cards/paella.jpg"
 					/>
 					<CardContent>
