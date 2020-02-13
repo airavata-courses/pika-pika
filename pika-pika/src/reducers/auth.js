@@ -1,10 +1,14 @@
-import { REGISTER_FAIL, REGISTER_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, UPDATE_RECORD_SUCCESS, UPDATE_RECORD_FAIL } from '../actions/types'
+import { REGISTER_FAIL, REGISTER_SUCCESS, LOGIN_SUCCESS, 
+	LOGIN_FAIL, UPDATE_RECORD_SUCCESS, UPDATE_RECORD_FAIL 
+	,JOBLIST_FETCH_SUCCESS,JOBLIST_FETCH_FAIL
+	} from '../actions/types'
 
 const initialState = {
 	token: '',
 	isAuthenticated: false,
 	loading: true,
-	user: null
+	user: null,
+	jobId:[]
 }
 
 export default function (state = initialState, action) {
@@ -13,7 +17,7 @@ export default function (state = initialState, action) {
 		case REGISTER_SUCCESS:
 			return {
 				...state,
-				token: payload,
+				...payload,
 				isAuthenticated: true,
 				loading: false
 			}
@@ -27,7 +31,7 @@ export default function (state = initialState, action) {
 		case LOGIN_SUCCESS:
 			return {
 				...state,
-				token: payload,
+				...payload,
 				isAuthenticated: true,
 				loading: false
 			}
@@ -43,6 +47,15 @@ export default function (state = initialState, action) {
 				...state
 			}
 		case UPDATE_RECORD_FAIL:
+			return {
+				...state
+			}
+		case JOBLIST_FETCH_SUCCESS:
+			return {
+				...state,
+				jobId:payload
+			}
+		case JOBLIST_FETCH_FAIL:
 			return {
 				...state
 			}

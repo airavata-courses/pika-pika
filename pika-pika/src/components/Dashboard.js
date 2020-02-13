@@ -22,7 +22,7 @@ import { mainListItems, secondaryListItems } from './ListItems';
 import { withRouter, Switch, Route } from "react-router-dom";
 import GoogleMap from "./Map.js";
 import ModelExecution from './ModelExecution';
-import { JobResults } from "./JobResults";
+import JobResults from "./JobResults";
 // import Deposits from './Deposits';
 // import Orders from './Orders';
 

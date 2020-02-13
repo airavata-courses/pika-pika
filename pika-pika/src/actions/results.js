@@ -9,11 +9,10 @@ export const getResults = (jobID) => async dispatch => {
 	}
 	const data = {
 		key: 'fetch',
-		jobID: "29f69330-4be9-11ea-bc00-6b5c8d8055dd"
+		jobID: jobID
 	}
-	const body = JSON.stringify({ data })
+	const body = JSON.stringify(data)
 	try {
-		console.log('test')
 		const res = await axios.post('http://localhost:4000/api/results/getResult', body, config);
 		console.log(res)
 		dispatch({ type: RESULT_SUCCESS, payload: res.data })

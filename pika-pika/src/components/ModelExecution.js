@@ -87,18 +87,21 @@ function ModelExecution(props) {
 	const handleChangeFile = event => {
 		setFileName(event.target.value)
 	}
-	const lanuchJob = () => {
+	const lanuch = () => {
 		let key = selectedDate.toISOString().slice(0, 10).split('-').join('/') + '/' + radarName + '/' + fileName
 		props.launchJob({
 			key: key,
 			bucket: "noaa-nexrad-level2"
 		})
-		props.updateUser(props.auth.email, props.jobmodel.jobID)
-
-		//props.u
-		//console.log(jobID);
-
+		// .then((data)=>{
+			
+		// })
 	}
+	useEffect(() => {
+		if(props.jobmodel.jobID!=null){
+		props.updateUser({email:props.auth.user,jobId:props.jobmodel.jobID})
+		}
+	}, [props.jobmodel.jobID])
 
 	return (
 		<React.Fragment>
@@ -190,7 +193,7 @@ function ModelExecution(props) {
 									color="secondary"
 									className={classes.button}
 									endIcon={<SendIcon />}
-									onClick={lanuchJob}
+									onClick={lanuch}
 								>
 									Launch
                 </Button>
@@ -214,9 +217,9 @@ const mapStateToProps = state => ({
 ModelExecution.propTypes = {
 	getRadar: PropTypes.func.isRequired,
 	updateUser: PropTypes.func.isRequired,
-	nexrad: PropTypes.object.isRequired,
+	nexrad: PropTypes.array.isRequired,
 	getFiles: PropTypes.func.isRequired,
-	nexradfile: PropTypes.object.isRequired,
+	nexradfile: PropTypes.array.isRequired,
 	lanuchJob: PropTypes.func.isRequired,
 	jobmodel: PropTypes.object.isRequired
 }
