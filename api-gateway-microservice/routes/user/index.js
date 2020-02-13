@@ -45,4 +45,18 @@ router.post('/updateRecord', (req, res) => {
 		})
 })
 
+router.post('/getJobList', (req, res) => {
+	let uuid = uuidv1()
+	responseMap[uuid] = res
+	let message = {
+		key: 'getJobList',
+		data: req.body,
+		resId: uuid
+	}
+	sendPayload(kafka_topic, JSON.stringify(message))
+		.catch((error) => {
+			res.status(500).send(error)
+		})
+})
+
 module.exports = router
