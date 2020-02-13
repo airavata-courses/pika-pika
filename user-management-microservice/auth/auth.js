@@ -32,7 +32,7 @@ let register = async (data) => {
 			exp: new Date().setDate(new Date().getDate() + 1)
 		}, settings.secret);
 		//Return the json web token
-		return token
+		return {token:token,user:email}
 	} catch (error) {
 		throw new Error("Server Error")
 	}
@@ -47,7 +47,7 @@ let signIn = async (data) => {
 	}
 	try {
 		const token = jwt.sign(req.user, settings.secret);
-		return token
+		return {token:token,user:data.email}
 	} catch (error) {
 		throw new Error("Server Error")
 	}
@@ -84,10 +84,24 @@ let updateRecord = async (data) => {
 			{ $push: { jobId: jobId } }
 		).then((data) => {
 			console.log(data)
+			return data
 		}).catch((error) => {
-			console.log(error)
+			throw new Error(error)
 		})
 	}
 }
 
-module.exports = { signIn, register, sendPayload, updateRecord }
+let getJobList=async (data)=>{
+	const email = data.email
+	var query = { "email": email }
+
+	let user = await User.findOne({ email });
+	if (user) {
+		return user.jobId
+	}
+	else{
+		throw new Error("User not found!")
+	}
+}
+
+module.exports = { signIn, register, sendPayload, updateRecord,getJobList }
