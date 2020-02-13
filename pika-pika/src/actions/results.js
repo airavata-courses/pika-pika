@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { RESULT_FAIL, RESULT_SUCCESS } from './types'
 
-export const getResults = () => async dispatch => {
+export const getResults = (jobID) => async dispatch => {
 	const config = {
 		headers: {
 			'Content-Type': 'application/json'
