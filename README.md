@@ -1,6 +1,4 @@
-# System overview:
-![alt text](https://drive.google.com/file/d/1qHBmQgGoLnbUws8xLXEn1bedcwGb8UPz/view)
-Welcome to the Pika-Pika!
+Please find the architecture diagram at : https://drive.google.com/file/d/1qHBmQgGoLnbUws8xLXEn1bedcwGb8UPz/view?usp=sharing
 
 # Dockerized Kafka
 
