@@ -117,5 +117,6 @@ https://www.npmjs.com/get-npm
 and then do
 
 ```bash
+npm install
 npm start
 ```
