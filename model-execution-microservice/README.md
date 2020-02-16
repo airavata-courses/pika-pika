@@ -18,7 +18,7 @@ activate
 
 On macOS and Linux:
 ```
-source env/bin/activate
+source modelenvmac/bin/activate
 ```
 
 
