@@ -11,10 +11,17 @@ Install the model execution microservice by navigating to the following folder u
 cd model-execution-microservice/model-execution-microservice/modelenv/Scripts
 ```
 
-Run the command :
+Run the command on Windows :
 ```
 activate
 ```
+
+On macOS and Linux:
+```
+source env/bin/activate
+```
+
+
 Navigate two folders back using the following command :
 ```
 ../../pip install -r requirements.txt
