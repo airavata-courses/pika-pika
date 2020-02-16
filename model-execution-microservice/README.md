@@ -7,8 +7,15 @@ This microservice takes the url of the nexrad file as the input and runs the alg
 
 Install the model execution microservice by navigating to the following folder using command-line : 
 
+Windows:
+
 ```python
-cd model-execution-microservice/model-execution-microservice/modelenv/Scripts
+cd model-execution-microservice/modelenv/Scripts
+```
+
+On macOS and Linux:
+```python
+cd model-execution-microservice/modelenvmac
 ```
 
 Run the command on Windows :
@@ -18,13 +25,12 @@ activate
 
 On macOS and Linux:
 ```
-source modelenvmac/bin/activate
+source bin/activate
 ```
 
-
-Navigate two folders back using the following command :
+Run the following command inside the environment folder:
 ```
-../../pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 Execute the python script using the following command :
 ```
