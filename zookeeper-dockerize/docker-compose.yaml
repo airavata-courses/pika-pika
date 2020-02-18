@@ -1,23 +1,23 @@
-version: '3'
+version: '2'
 services:
-  image: landoop/fast-data-dev
-    container_name: kafka-setup
-    command: "bash -c 'echo Waiting for Kafka to be ready... && \
-                         cub kafka-ready -b broker:9092 1 20 && \
-                         kafka-topics --create --if-not-exists --zookeeper zookeeper:2181 --partitions 1 --replication-factor 1 --topic data-retrieval-service && \
-                         kafka-topics --create --if-not-exists --zookeeper zookeeper:2181 --partitions 1 --replication-factor 1 --topic model-execution-service && \
-                         kafka-topics --create --if-not-exists --zookeeper zookeeper:2181 --partitions 1 --replication-factor 1 --topic user-management-service && \
-                         kafka-topics --create --if-not-exists --zookeeper zookeeper:2181 --partitions 1 --replication-factor 1 --topic post-processing-service && \
-                         kafka-topics --create --if-not-exists --zookeeper zookeeper:2181 --partitions 1 --replication-factor 1 --topic session-management-service && \
-                         kafka-topics --create --if-not-exists --zookeeper zookeeper:2181 --partitions 1 --replication-factor 1 --topic api-gateway-service && \
-                         kafka-topics --create --if-not-exists --zookeeper zookeeper:2181 --partitions 1 --replication-factor 1 --topic front-end-data-retrieval-service && \
-                         echo Waiting 60 seconds for Connect to be ready... && \
-                         sleep 60 && \
-"
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - 2181:2181
+    hostname: zookeeper
+  kafka:
+    image: wurstmeister/kafka:2.12-2.4.0
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    expose:
+      - "9093"
     environment:
-      # The following settings are listed here only to satisfy the image's requirements.
-      # We override the image's `command` anyways, hence this container will not start a broker.
-      KAFKA_BROKER_ID: ignored
-      KAFKA_ZOOKEEPER_CONNECT: ignored
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      KAFKA_CREATE_TOPICS: "data-retrieval-service:1:1,model-execution-service:1:1,user-management-service:1:1,post-processing-service:1:1,session-management-service:1:1,api-gateway-service:1:1,front-end-data-retrieval-service:1:1"
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_MESSAGE_MAX_BYTES: 2147483647
