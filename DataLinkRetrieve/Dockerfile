@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-java:jdk13-slim
+FROM openjdk:13-jdk
 VOLUME /tmp
 
 ADD ./target/DataLinkRetrieve-0.0.1-SNAPSHOT.jar data-retrieval-microservice.jar
