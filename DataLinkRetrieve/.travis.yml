@@ -1,0 +1,20 @@
+language: java
+jdk: oraclejdk8
+
+services:
+  - docker
+
+cache:
+  directories:
+    - $HOME/.m2
+install: true
+script:
+  - ./mvnw install -Dmaven.javadoc.skip=true -B -V
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=akshayrajvanshi1992/dataRetrievalMicroservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "data-link-retrieval-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t dataRetrievalMicroservice .
+  - docker tag dataRetrievalMicroservice $REPO:$TAG
+  - docker push $REPO:$TAG

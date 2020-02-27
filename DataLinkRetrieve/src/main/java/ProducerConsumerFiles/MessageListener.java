@@ -15,7 +15,6 @@ public class MessageListener {
 
     @KafkaListener(topics = "#{'${consumer.topic.name}'}", groupId = "test-consumer-group")
     public void listen(String message) {
-        System.out.println("Received Message: " + message);
         DataLinkRetrieveApplication.producer.sendMessage(message);
         latch.countDown();
     }
