@@ -25,6 +25,7 @@ public class MessageProducer {
             public void onSuccess(SendResult<String, String> result) {
                 System.out.println("Sent message=[" + message + "] with offset=[" + result.getRecordMetadata().offset() + "]");
             }
+
             @Override
             public void onFailure(Throwable ex) {
                 System.out.println("Unable to send message=[" + message + "] due to : " + ex.getMessage());
