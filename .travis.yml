@@ -18,4 +18,4 @@ after_success:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "data-link-retrieval-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   - docker build -t data-retrieval-microservice .
   - docker tag data-retrieval-microservice $REPO:$TAG
-  - docker push $REPO:latest
+  - docker push $REPO:$TAG
