@@ -6,7 +6,7 @@ services:
 
 script:
   - cd DataLinkRetrieve
-  - ./mvnw install -Dmaven.javadoc.skip=true -B -V
+  - mvn -Dmaven.test.skip test-compile jar:test-jar install
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
