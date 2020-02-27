@@ -8,9 +8,6 @@ branches:
   only:
     - data-link-retrieve-microservice
 
-cache:
-  directories:
-    - $HOME/.m2
 install: true
 script:
   - ./mvnw install -Dmaven.javadoc.skip=true -B -V
