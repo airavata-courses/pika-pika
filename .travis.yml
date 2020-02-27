@@ -3,10 +3,9 @@ jdk: oraclejdk13
 
 services:
   - docker
-install:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
 script:
-  - mvn -N io.takari:maven:wrapper
+  - cd DataLinkRetrieve
   - ./mvnw install -Dmaven.javadoc.skip=true -B -V
 
 after_success:
