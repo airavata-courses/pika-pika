@@ -17,7 +17,6 @@ script:
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - export REPO=akshayrajvanshi1992/data-retrieval-microservice
- # - export TAG=`if [ "$TRAVIS_BRANCH" == "data-link-retrieval-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   — echo $REPO:$TAG:$COMMIT
   - docker build -t data-retrieval-microservice .
   - docker tag data-retrieval-microservice $REPO:$TRAVIS_BUILD_NUMBER
