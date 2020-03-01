@@ -14,7 +14,6 @@ services:
 script:
   # Removing the test command for time being. Uncomment the line when the test files have been put in place.
   # - npm test
-  - npm run build
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
