@@ -1,0 +1,20 @@
+language: node_js
+sudo: false
+node_js:
+  - 10
+install:
+  - cd frontend-data-retrieval-microservice && npm install
+cache:
+  directories:
+    - "node_modules"
+
+services:
+  - docker
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=akshayrajvanshi1992/frontend-data-retrieval-microservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "frontpage-data-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t frontpage-data-microservice .
+  - docker tag frontpage-data-microservice $REPO:$TAG
+  - docker push $REPO:$TAG
