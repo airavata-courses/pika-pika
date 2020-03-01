@@ -1,0 +1,20 @@
+language: node_js
+sudo: false
+node_js:
+  - 10
+install:
+  - cd post-processing-microservice && npm install
+cache:
+  directories:
+    - "node_modules"
+
+services:
+  - docker
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=akshayrajvanshi1992/post-processing-microservice-microservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "post-processing-microservice-node" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t post-processing-microservice .
+  - docker tag post-processing-microservice $REPO:$TAG
+  - docker push $REPO:$TAG
