@@ -3,7 +3,7 @@ sudo: false
 node_js:
   - 10
 install:
-  - cd istanbul-mocha && npm install && cd ..
+  - cd api-gateway-microservice && npm install && cd ..
 cache:
   directories:
     - "node_modules"
