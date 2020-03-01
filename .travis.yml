@@ -1,0 +1,24 @@
+language: node_js
+sudo: false
+node_js:
+  - 10
+install:
+  - cd istanbul-mocha && npm install && cd ..
+cache:
+  directories:
+    - "node_modules"
+
+services:
+  - docker
+
+script:
+  - npm test
+  - npm run build
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=akshayrajvanshi1992/api-gateway-microservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "api-gateway-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t api-gateway-microservice .
+  - docker tag api-gateway-microservice $REPO:$TAG
+  - docker push $REPO:$TAG
