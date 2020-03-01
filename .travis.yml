@@ -3,7 +3,7 @@ sudo: false
 node_js:
   - 10
 install:
-  - cd api-gateway-microservice && npm install && cd ..
+  - cd api-gateway-microservice && npm install
 cache:
   directories:
     - "node_modules"
