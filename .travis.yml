@@ -11,7 +11,7 @@ cache:
 services:
   - docker
 
-script:
+#script:
   # Removing the test command for time being. Uncomment the line when the test files have been put in place.
   # - npm test
 
