@@ -5,13 +5,14 @@ var signin = require('./auth/auth').signIn
 var register = require('./auth/auth').register
 var sendPayload = require('./auth/auth').sendPayload
 var updateRecord = require('./auth/auth').updateRecord
-var getJobList=require('./auth/auth').getJobList
+var getJobList = require('./auth/auth').getJobList
+
 
 let functionMap = {
 	'signin': signin,
 	'register': register,
 	'updateRecord': updateRecord,
-	'getJobList':getJobList
+	'getJobList': getJobList
 }
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });

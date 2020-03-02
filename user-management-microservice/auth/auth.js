@@ -2,9 +2,9 @@ const express = require('express');
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 var settings = require('../config/settings')
-const producer = require('../config/connection').producer
+// const producer = require('../config/connection').producer
 
 let register = async (data) => {
 	const email = data.email;
@@ -32,7 +32,7 @@ let register = async (data) => {
 			exp: new Date().setDate(new Date().getDate() + 1)
 		}, settings.secret);
 		//Return the json web token
-		return {token:token,user:email}
+		return { token: token, user: email }
 	} catch (error) {
 		throw new Error("Server Error")
 	}
@@ -47,7 +47,7 @@ let signIn = async (data) => {
 	}
 	try {
 		const token = jwt.sign(req.user, settings.secret);
-		return {token:token,user:data.email}
+		return { token: token, user: data.email }
 	} catch (error) {
 		throw new Error("Server Error")
 	}
@@ -91,7 +91,7 @@ let updateRecord = async (data) => {
 	}
 }
 
-let getJobList=async (data)=>{
+let getJobList = async (data) => {
 	const email = data.email
 	var query = { "email": email }
 
@@ -99,9 +99,9 @@ let getJobList=async (data)=>{
 	if (user) {
 		return user.jobId
 	}
-	else{
+	else {
 		throw new Error("User not found!")
 	}
 }
 
-module.exports = { signIn, register, sendPayload, updateRecord,getJobList }
+module.exports = { signIn, register, sendPayload, updateRecord, getJobList }
