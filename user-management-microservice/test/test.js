@@ -5,7 +5,7 @@ var register = require('../auth/auth').register
 var updateRecord = require('../auth/auth').updateRecord
 var getJobList = require('../auth/auth').getJobList
 var key = 'signin';
-var userdata = { "email": "sharavi@iu.edu", "password": "test123!" };
+var userdata = { "email": "sharavi1@iu.edu", "password": "test123!" };
 
 let functionMap = {
 	'signin': signin,
@@ -13,14 +13,16 @@ let functionMap = {
 	'updateRecord': updateRecord,
 	'getJobList': getJobList
 }
+
 describe('Testing auth functions', function () {
 
 	it('should return users email ID', function () {
-		functionMap['signin'](userdata).then((data) => {
-			console.log(data.user);
-			assert.equal(userdata.email, data.user);
+		functionMap['register'](userdata).then((data) => {
+			console.log(data + " -- " + userdata);
+			assert.equal(userdata.email, null);
 
 		}).catch((error) => {
+			console.log("error block :: " + data + " -- " + userdata);
 			console.log(error);
 		})
 	});

@@ -2,9 +2,9 @@ const express = require('express');
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 var settings = require('../config/settings')
-// const producer = require('../config/connection').producer
+const producer = require('../config/connection').producer
 
 let register = async (data) => {
 	const email = data.email;
@@ -31,6 +31,7 @@ let register = async (data) => {
 			sub: user._id,
 			exp: new Date().setDate(new Date().getDate() + 1)
 		}, settings.secret);
+		console.log(token);
 		//Return the json web token
 		return { token: token, user: email }
 	} catch (error) {
