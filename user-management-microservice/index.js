@@ -3,7 +3,7 @@ var url = "mongodb://localhost:27017/pika-pika";
 const consumer = require('./config/connection').consumer
 var signin = require('./auth/auth').signIn
 var register = require('./auth/auth').register
-var sendPayload = require('./auth/auth').sendPayload
+var sendPayload = require('./auth/sendPayload').sendPayload
 var updateRecord = require('./auth/auth').updateRecord
 var getJobList = require('./auth/auth').getJobList
 
