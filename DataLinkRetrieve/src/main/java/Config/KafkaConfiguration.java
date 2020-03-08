@@ -24,9 +24,8 @@ public class KafkaConfiguration {
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
 
-        //TODO: Check the config with the team
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, SERVER_DETAILS);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "data-retrieval-group");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
@@ -46,7 +45,7 @@ public class KafkaConfiguration {
 
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, SERVER_DETAILS);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,  JsonSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
         return new DefaultKafkaProducerFactory<>(config);
     }

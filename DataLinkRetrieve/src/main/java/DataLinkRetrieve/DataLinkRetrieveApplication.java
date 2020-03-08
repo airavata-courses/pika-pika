@@ -1,38 +1,26 @@
 package DataLinkRetrieve;
 
-import ProducerConsumerFiles.MessageListener;
-import ProducerConsumerFiles.MessageProducer;
+import ProducerConsumerFiles.KafkaMessageListener;
+import ProducerConsumerFiles.KafkaMessageProducer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class DataLinkRetrieveApplication {
 
-	public static MessageProducer producer;
-	public static MessageListener listener;
-	static ConfigurableApplicationContext context;
+    public static void main(String[] args) {
+        SpringApplication.run(DataLinkRetrieveApplication.class, args);
+    }
 
-	public static void initialize() {
-//		producer = context.getBean(MessageProducer.class);
-//		listener = context.getBean(MessageListener.class);
-	}
+    @Bean
+    public KafkaMessageProducer messageProducer() {
+        return new KafkaMessageProducer();
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(DataLinkRetrieveApplication.class, args);
-//		context = SpringApplication.run(DataLinkRetrieveApplication.class, args);
-//		initialize();
-	}
-//
-//	@Bean
-//	public MessageProducer messageProducer() {
-//		return new MessageProducer();
-//	}
-//
-//	@Bean
-//	public MessageListener messageListener() {
-//		return new MessageListener();
-//	}
+    @Bean
+    public KafkaMessageListener messageListener() {
+        return new KafkaMessageListener();
+    }
 
 }
