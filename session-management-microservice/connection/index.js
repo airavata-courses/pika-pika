@@ -3,7 +3,7 @@ let mongo = require('mongodb').MongoClient
 let process = require('process')
 const Producer = kafka.Producer;
 const Consumer = kafka.Consumer;
-const client = new kafka.KafkaClient();
+const client = new kafka.KafkaClient("localhost:2181");
 let mongoClient = null
 let mongoDb = null
 global.mongoDb = null
@@ -20,15 +20,16 @@ try {
 			{ topic: 'post-processing-service', offset: 0, partition: 0 },
 			{ topic: 'session-management-service', offset: 0, partition: 0 }
 		],
-		{
-			autoCommit: false,
+		{	groupId: 'session-management-service',
+			autoCommit: true,
+			autoCommitIntervalMs: 5000,
 			fetchMaxWaitMs: 1000,
 			fetchMaxBytes: 1024000,
 			encoding: 'utf8',
-			fromOffset: true
+			fromOffset: false
 		}
 	)
-	mongo.connect("mongodb://localhost:27017",
+	mongo.connect("mongodb://localhost:27017/session-management",
 		{ useNewUrlParser: true, useUnifiedTopology: true },
 		(err, client) => {
 			if (err) {
