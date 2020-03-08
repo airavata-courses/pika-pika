@@ -1,0 +1,13 @@
+matplotlib
+numpy
+scipy
+pint
+pandas
+xarray
+traitlets
+pooch
+boto3
+botocore
+metpy
+pyimgur
+kafka-python
