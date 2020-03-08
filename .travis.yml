@@ -1,0 +1,20 @@
+language: node_js
+sudo: false
+node_js:
+  - 10
+install:
+  - cd session-management-microservice && npm install
+cache:
+  directories:
+    - "node_modules"
+
+services:
+  - docker
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=akshayrajvanshi1992/session-management-microservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "session-management-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t session-management-microservice .
+  - docker tag session-management-microservice $REPO:$TAG
+  - docker push $REPO:$TAG
