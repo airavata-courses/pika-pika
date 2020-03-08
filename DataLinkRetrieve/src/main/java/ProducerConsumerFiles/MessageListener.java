@@ -1,21 +1,22 @@
 package ProducerConsumerFiles;
 
-import DataLinkRetrieve.DataLinkRetrieveApplication;
+import Entity.MessageEntity;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
-import java.util.concurrent.CountDownLatch;
-
+@Service
 public class MessageListener {
 
-    private CountDownLatch latch = new CountDownLatch(3);
+    public static final String TOPIC = "data-retrieval-service";
 
-    public CountDownLatch getLatch() {
-        return latch;
+    public MessageEntity messageEntity;
+
+    @KafkaListener(topics = TOPIC, groupId = "test-consumer-group")
+    public void consume(String message) {
+        messageEntity.setDataRetrievalData(message);
+        System.out.println("Received Message: " + message);
     }
 
-    @KafkaListener(topics = "#{'${consumer.topic.name}'}", groupId = "test-consumer-group")
-    public void listen(String message) {
-        DataLinkRetrieveApplication.producer.sendMessage(message);
-        latch.countDown();
-    }
 }
+
+

@@ -15,24 +15,24 @@ public class DataLinkRetrieveApplication {
 	static ConfigurableApplicationContext context;
 
 	public static void initialize() {
-		producer = context.getBean(MessageProducer.class);
-		listener = context.getBean(MessageListener.class);
+//		producer = context.getBean(MessageProducer.class);
+//		listener = context.getBean(MessageListener.class);
 	}
 
 	public static void main(String[] args) {
-
-		context = SpringApplication.run(DataLinkRetrieveApplication.class, args);
-		initialize();
+		SpringApplication.run(DataLinkRetrieveApplication.class, args);
+//		context = SpringApplication.run(DataLinkRetrieveApplication.class, args);
+//		initialize();
 	}
-
-	@Bean
-	public MessageProducer messageProducer() {
-		return new MessageProducer();
-	}
-
-	@Bean
-	public MessageListener messageListener() {
-		return new MessageListener();
-	}
+//
+//	@Bean
+//	public MessageProducer messageProducer() {
+//		return new MessageProducer();
+//	}
+//
+//	@Bean
+//	public MessageListener messageListener() {
+//		return new MessageListener();
+//	}
 
 }
