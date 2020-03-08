@@ -1,0 +1,21 @@
+language: python
+python:
+  - "3.7"
+
+install:
+  - cd model-execution-microservice/modeldocker && pip install -r requirements.txt
+
+script:
+  - pytest
+
+services:
+  - docker
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=akshayrajvanshi1992/model-execution-microservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "model-execution-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t model-execution-microservice .
+  - docker tag model-execution-microservice $REPO:$TAG
+  - docker push $REPO:$TAG
+
