@@ -1,7 +1,7 @@
-version: '2'
+version: "3"
 services:
   zookeeper:
-    image: wurstmeister/zookeeper
+    image: zookeeper:latest
     ports:
       - 2181:2181
     hostname: zookeeper
@@ -21,3 +21,5 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_MESSAGE_MAX_BYTES: 2147483647
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      ALLOW_PLAINTEXT_LISTENER: "true"
