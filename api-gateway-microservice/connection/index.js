@@ -1,7 +1,7 @@
 const kafka = require('kafka-node')
 const Producer = kafka.Producer
 const Consumer = kafka.Consumer
-const client = new kafka.KafkaClient()
+const client = new kafka.KafkaClient("zk-1:2181")
 let producer = null
 let consumer = null
 
