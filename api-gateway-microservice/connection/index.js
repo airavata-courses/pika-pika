@@ -13,7 +13,7 @@ try {
 		{
 			autoCommit: true,
 			fetchMaxWaitMs: 1000,
-			fetchMaxBytes: 102400,
+			fetchMaxBytes: 1024,
 			encoding: 'utf8',
 			fromOffset: true
 		}
