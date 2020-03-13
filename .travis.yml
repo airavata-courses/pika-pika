@@ -1,0 +1,22 @@
+language: node_js
+sudo: false
+node_js:
+  - 10
+
+install:
+  - cd pika-pika && npm install
+
+cache:
+  directories:
+    - node_modules
+
+services:
+  - docker
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=akshayrajvanshi1992/pika-pika-frontend
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "frontend" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t pika-pika-frontend .
+  - docker tag pika-pika-frontend $REPO:$TAG
+  - docker push $REPO:$TAG
