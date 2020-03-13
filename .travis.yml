@@ -6,6 +6,8 @@ node_js:
 install:
   - cd pika-pika && npm install
 
+script: echo "npm test temporarily disabled"
+
 cache:
   directories:
     - node_modules
