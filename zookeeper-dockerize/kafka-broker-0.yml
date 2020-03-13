@@ -25,4 +25,4 @@ spec:
         - name: KAFKA_BROKER_ID
           value: "0"
         - name: KAFKA_CREATE_TOPICS
-          value: api-gateway-service:2:1
+          value: api-gateway-service:1:1
