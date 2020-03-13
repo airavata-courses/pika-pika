@@ -1,7 +1,7 @@
 const kafka = require('kafka-node')
 const Producer = kafka.Producer
 const Consumer = kafka.Consumer
-const client = new kafka.KafkaClient({kafkaHost: "kafka-broker:9092"})
+const client = new kafka.KafkaClient({kafkaHost: "kafka-service:9092"})
 let producer = null
 let consumer = null
 
