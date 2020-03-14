@@ -2,7 +2,7 @@ const kafka = require('kafka-node');
 
 const Producer = kafka.Producer;
 const Consumer = kafka.Consumer;
-const client = new kafka.KafkaClient();
+const client = new kafka.KafkaClient({kafkaHost: "kafka-service:9092"});
 let producer = null
 let consumer = null
 
@@ -12,11 +12,13 @@ try {
 		client,
 		[{ topic: 'user-management-service', offset: 0, partition: 0 }],
 		{
+			groupId: 'user-management-service',
 			autoCommit: true,
+			autoCommitIntervalMs: 5000,
 			fetchMaxWaitMs: 1000,
-			fetchMaxBytes: 102400,
+			fetchMaxBytes: 1024,
 			encoding: 'utf8',
-			fromOffset: true
+			fromOffset: false
 		}
 	)
 
