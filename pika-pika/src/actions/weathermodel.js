@@ -13,7 +13,7 @@ export const getweather = ({ lat, lon }) => async dispatch => {
 	}
 	const body = JSON.stringify({ lat, lon })
 	try {
-		const res = await axios.post('http://localhost:4000/api/weather/getWeather', body, config);
+		const res = await axios.post('/api/weather/getWeather', body, config);
 		console.log(res)
 		dispatch({ type: WEATHER_DATA_SUCCESS, payload: res.data })
 	} catch (err) {
@@ -30,7 +30,7 @@ export const getRadar = ({date}) => async dispatch => {
 	}
 	const body = JSON.stringify({ date })
 	try {
-		const res = await axios.post('http://localhost:4000/api/weather/getRadar', body, config);
+		const res = await axios.post('/api/weather/getRadar', body, config);
 		console.log(res)
 		dispatch({ type: RADAR_DATA_SUCCESS, payload: res.data })
 	} catch (err) {
@@ -47,7 +47,7 @@ export const getFiles = ({date,radar}) => async dispatch => {
 	}
 	const body = JSON.stringify({ date,radar })
 	try {
-		const res = await axios.post('http://localhost:4000/api/weather/getFiles', body, config);
+		const res = await axios.post('/api/weather/getFiles', body, config);
 		console.log(res)
 		dispatch({ type: RADARFILE_DATA_SUCCESS, payload: res.data })
 	} catch (err) {
@@ -64,7 +64,7 @@ export const launchJob = ({key,bucket}) => async dispatch => {
 	}
 	const body = JSON.stringify({ key,bucket })
 	try {
-		const res = await axios.post('http://localhost:4000/api/model/executeModal', body, config);
+		const res = await axios.post('/api/model/executeModal', body, config);
 		console.log(res)
 		dispatch({ type: LAUNCH_SUCCESS, payload: res.data })
 	} catch (err) {

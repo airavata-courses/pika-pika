@@ -13,7 +13,7 @@ export const getResults = (jobID) => async dispatch => {
 	}
 	const body = JSON.stringify(data)
 	try {
-		const res = await axios.post('http://localhost:4000/api/results/getResult', body, config);
+		const res = await axios.post('/api/results/getResult', body, config);
 		console.log(res)
 		dispatch({ type: RESULT_SUCCESS, payload: res.data })
 	} catch (err) {

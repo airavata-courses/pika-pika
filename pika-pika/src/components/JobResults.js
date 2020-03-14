@@ -69,7 +69,7 @@ function JobResults(props) {
 		// 	jobID: "29f69330-4be9-11ea-bc00-6b5c8d8055dd"
 		// }
 		// const dat = JSON.stringify(data)
-		// axios.post('http://localhost:4000/api/results/getResult',
+		// axios.post('/api/results/getResult',
 		// 	dat, config
 		// ).then((res) => {
 		// 	console.log(res)
