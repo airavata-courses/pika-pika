@@ -3,7 +3,7 @@ let mongo = require('mongodb').MongoClient
 let process = require('process')
 const Producer = kafka.Producer;
 const Consumer = kafka.Consumer;
-const client = new kafka.KafkaClient("localhost:2181");
+const client = new kafka.KafkaClient({kafkaHost: "kafka-service:9092"});
 let mongoClient = null
 let mongoDb = null
 global.mongoDb = null
@@ -24,7 +24,7 @@ try {
 			autoCommit: true,
 			autoCommitIntervalMs: 5000,
 			fetchMaxWaitMs: 1000,
-			fetchMaxBytes: 1024000,
+			fetchMaxBytes: 1024,
 			encoding: 'utf8',
 			fromOffset: false
 		}
