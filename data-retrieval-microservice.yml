@@ -5,17 +5,11 @@ metadata:
   name: dataretrievalservice
 spec:
   selector:
-    app: user-management
+    app: data-retrieval
   ports:
     - protocol: "TCP"
       # Port accessible inside cluster
-      port: 8080
-    #   # Port to forward to inside the pod
-    #   targetPort: 4000
-    #   # Port accessible outside cluster
-    #   nodePort: 30001
-  # type: LoadBalancer
-
+      port: 3004
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
@@ -33,6 +27,4 @@ spec:
     spec:
       containers:
         - name: data-retrieval
-          image: akshayrajvanshi1992/data-retrieval-microservice:data-link-retrieve-microservice
-          # ports:
-          # - containerPort: 4000
+          image: akshayrajvanshi1992/data-retrieval-microservice:latest
