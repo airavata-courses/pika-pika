@@ -4,6 +4,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -18,7 +19,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConfiguration {
 
-    public static final String SERVER_DETAILS = "localhost:9092";
+    public static final String SERVER_DETAILS = "kafka-service:9092";
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
