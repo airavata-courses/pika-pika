@@ -3,13 +3,13 @@ import json
 from kafka import KafkaProducer
 from kafka import KafkaConsumer
 
-producer = KafkaProducer(bootstrap_servers=['127.0.0.1:9092'],
+producer = KafkaProducer(bootstrap_servers=['kafka-service:9092'],
                          value_serializer=lambda x: 
                          json.dumps(x).encode('utf-8'))
 
 consumer = KafkaConsumer(
     'model-execution-service',
-     bootstrap_servers=['127.0.0.1:9092'],
+     bootstrap_servers=['kafka-service:9092'],
      auto_offset_reset='earliest',
      enable_auto_commit=True,
      group_id='model-execution-group',
