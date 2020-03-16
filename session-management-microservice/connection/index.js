@@ -20,11 +20,11 @@ try {
 			{ topic: 'post-processing-service', offset: 0, partition: 0 },
 			{ topic: 'session-management-service', offset: 0, partition: 0 }
 		],
-		{	groupId: 'session-management-service',
+		{	groupId: 'session-management-group',
 			autoCommit: true,
 			autoCommitIntervalMs: 5000,
 			fetchMaxWaitMs: 1000,
-			fetchMaxBytes: 1024,
+			fetchMaxBytes: 1024*1024,
 			encoding: 'utf8',
 			fromOffset: false
 		}
