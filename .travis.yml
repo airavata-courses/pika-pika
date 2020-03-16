@@ -15,6 +15,6 @@ after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - export REPO=akshayrajvanshi1992/frontend-data-retrieval-microservice
   - export TAG=`if [ "$TRAVIS_BRANCH" == "frontpage-data-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  - docker build -t frontpage-data-microservice .
+  - docker build -t frontpage-data-microservice . --build-arg AWSAccessKeyId=$AWSAccessKeyId --build-arg AWSSecretKey=$AWSSecretKey
   - docker tag frontpage-data-microservice $REPO:$TAG
   - docker push $REPO:$TAG
