@@ -1,31 +1,31 @@
 ---
-  kind: Service
-  apiVersion: v1
-  metadata:
-    name: frontenddataservice
-  spec:
-    selector:
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontenddataservice
+spec:
+  selector:
+    app: frontend-data-retrieval
+  ports:
+    - protocol: "TCP"
+      # Port accessible inside cluster
+      port: 3006
+
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: frontend-data-retrieval-deployment
+spec:
+  selector:
+    matchLabels:
       app: frontend-data-retrieval
-    ports:
-      - protocol: "TCP"
-        # Port accessible inside cluster
-        port: 3006
-  
-  ---
-  apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-  kind: Deployment
-  metadata:
-    name: frontend-data-retrieval-deployment
-  spec:
-    selector:
-      matchLabels:
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
         app: frontend-data-retrieval
-    replicas: 1 # tells deployment to run 2 pods matching the template
-    template:
-      metadata:
-        labels:
-          app: frontend-data-retrieval
-      spec:
-        containers:
-          - name: frontend-data-retrieval
-            image: akshayrajvanshi1992/frontend-data-retrieval-microservice:latest
+    spec:
+      containers:
+        - name: frontend-data-retrieval
+          image: akshayrajvanshi1992/frontend-data-retrieval-microservice:latest
