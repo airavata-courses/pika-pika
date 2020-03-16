@@ -12,11 +12,11 @@ try {
 		client,
 		[{ topic: 'user-management-service', offset: 0, partition: 0 }],
 		{
-			groupId: 'user-management-service',
+			groupId: 'user-management-group',
 			autoCommit: true,
 			autoCommitIntervalMs: 5000,
 			fetchMaxWaitMs: 1000,
-			fetchMaxBytes: 1024,
+			fetchMaxBytes: 1024*1024,
 			encoding: 'utf8',
 			fromOffset: false
 		}
