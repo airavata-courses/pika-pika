@@ -11,11 +11,11 @@ try {
 		client,
 		[{ topic: 'api-gateway-service', offset: 0, partition: 0 }],
 		{
-			groupId: 'api-gateway-service',
+			groupId: 'api-gateway-group',
 			autoCommit: true,
 			autoCommitIntervalMs: 5000,
 			fetchMaxWaitMs: 1000,
-			fetchMaxBytes: 1024,
+			fetchMaxBytes: 1024*1024,
 			encoding: 'utf8',
 			fromOffset: false
 		}
