@@ -1,0 +1,31 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: postprocessingservice
+spec:
+  selector:
+    app: post-processing
+  ports:
+    - protocol: "TCP"
+      # Port accessible inside cluster
+      port: 3006
+
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: post-processing-deployment
+spec:
+  selector:
+    matchLabels:
+      app: post-processing
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: post-processing
+    spec:
+      containers:
+        - name: post-processing
+          image: akshayrajvanshi1992/post-processing-microservice:latest

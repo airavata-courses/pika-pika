@@ -1,0 +1,23 @@
+language: python
+python:
+  - "3.7"
+
+cache: pip
+
+install:
+  - cd post-processing-microservice && pip install -r requirements.txt
+
+script:
+  - pytest
+
+services:
+  - docker
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=akshayrajvanshi1992/post-processing-microservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "post-processing-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t post-processing-microservice .
+  - docker tag post-processing-microservice $REPO:$TAG
+  - docker push $REPO:$TAG
+

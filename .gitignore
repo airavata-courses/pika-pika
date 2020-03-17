@@ -1,3 +1,2 @@
 # Local files
-.vscode/
-node_modules/
+__pycache__
