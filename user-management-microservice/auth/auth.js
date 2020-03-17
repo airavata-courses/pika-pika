@@ -7,11 +7,14 @@ var settings = require('../config/settings')
 
 
 let register = async (data) => {
+	console.log("inside register auth ")
 	const email = data.email;
 	const password = data.password
+	console.log(email + ",," + password)
 	try {
 		//Check if the user exists
 		let user = await User.findOne({ email });
+		console.log(user);
 		if (user) {
 			console.log("User already exists")
 			throw new Error("User already exists")
@@ -46,10 +49,31 @@ let signIn = async (data) => {
 			password: data.password
 		}
 	}
+
 	try {
-		const token = jwt.sign(req.user, settings.secret);
-		return { token: token, user: data.email }
+		var email = data.email;
+		let user = await User.findOne({ email });
+		if (user) {
+			bcrypt.compare(req.user.password, user.password, function (err, res) {
+				if (err) {
+					// handle error
+					throw new Error("Server Error");
+				}
+				if (res) {
+					const token = jwt.sign(req.user, settings.secret);
+					return { token: token, user: data.email }
+					// Send JWT
+				} else {
+					// response is OutgoingMessage object that server response http request
+					throw new Error('passwords do not match');
+				}
+			});
+		} else {
+			throw new Error("User does not exist")
+		}
+
 	} catch (error) {
+		console.log(error);
 		throw new Error("Server Error")
 	}
 }
