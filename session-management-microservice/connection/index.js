@@ -41,5 +41,6 @@ try {
 		})
 } catch (error) {
 	console.log(error)
+	process.exit()
 }
 module.exports = { producer, consumer, mongoDb }
