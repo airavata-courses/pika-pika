@@ -36,4 +36,5 @@ consumer.on('message', (message)=>{
 })
 consumer.on('error', (error)=>{
     console.log('error', error)
+    process.exit()
 })
