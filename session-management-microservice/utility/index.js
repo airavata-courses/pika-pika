@@ -12,7 +12,7 @@ const updateJobData = (jobData) => {
 }
 
 const updateResult = (resultData) => {
-	if (resultData['data']['key'] == 'fetch') {
+	if (resultData['data']!==undefined && resultData['data']['key'] == 'fetch') {
 		return fetchResult(resultData)
 	}
 	resultData['status'] = 'Complete'
