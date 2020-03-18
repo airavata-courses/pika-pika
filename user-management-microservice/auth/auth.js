@@ -54,24 +54,21 @@ let signIn = async (data) => {
 		var email = data.email;
 		let user = await User.findOne({ email });
 		if (user) {
-			bcrypt.compare(req.user.password, user.password, function (err, res) {
-				if (err) {
-					// handle error
-					throw new Error("Server Error");
-				}
-				if (res) {
+			const match = await bcrypt.compare(req.user.password, user.password);
+ 
+				if(match) {
+					//login					
 					const token = jwt.sign(req.user, settings.secret);
 					return { token: token, user: data.email }
-					// Send JWT
-				} else {
-					// response is OutgoingMessage object that server response http request
-					throw new Error('passwords do not match');
+						// Send JWT											
 				}
-			});
-		} else {
-			throw new Error("User does not exist")
+				else {
+					throw new Error('passwords do not match');
+					
+				}
+		}else{
+				throw new Error("User does not exist")
 		}
-
 	} catch (error) {
 		console.log(error);
 		throw new Error("Server Error")

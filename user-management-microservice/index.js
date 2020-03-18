@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose')
 var url = "mongodb://localhost:27017/pika-pika";
 const consumer = require('./config/connection').consumer
@@ -21,7 +20,6 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('connected', function () {
 	console.log("Connected to database")
 });
-
 consumer.on('message', (message) => {
 	console.log('Message on Topic -> ' + message.topic)
 	console.log(message.value)
