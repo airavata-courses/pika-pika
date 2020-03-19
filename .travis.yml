@@ -17,8 +17,11 @@ services:
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - export REPO=akshayrajvanshi1992/pika-pika-frontend
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "frontend" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  - docker build -t pika-pika-frontend .
-  - docker tag pika-pika-frontend $REPO:$TAG
+  - export REPO=akshayrajvanshi1992/pika-pika-frontend-microservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "frontend" ]; then echo $TRAVIS_COMMIT; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -t pika-pika-frontend-microservice .
+  - docker tag pika-pika-frontend-microservice $REPO:$TAG
   - docker push $REPO:$TAG
+  - docker tag pika-pika-frontend-microservice $REPO:latest
+  - docker push $REPO:latest
+  - curl -u admin:admin "http://149.165.171.113:8080/job/Update-deployment/buildWithParameters?token=admin&TAG=$TAG&service=pika-pika-frontend"
