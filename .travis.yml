@@ -19,4 +19,6 @@ after_success:
   - docker build -t data-retrieval-microservice .
   - docker tag data-retrieval-microservice $REPO:$TAG
   - docker push $REPO:$TAG
+  - docker tag data-retrieval-microservice $REPO:latest
+  - docker push $REPO:latest
   - curl -u admin:admin "http://149.165.171.113:8080/job/Update-deployment/buildWithParameters?token=admin&TAG=$TAG&service=data-retrieval"
