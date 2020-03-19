@@ -15,8 +15,11 @@ services:
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - export REPO=akshayrajvanshi1992/post-processing-microservice-microservice
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "post-processing-microservice-node" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - export REPO=akshayrajvanshi1992/post-processing-microservice
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "post-processing-microservice-node" ]; then echo $TRAVIS_COMMIT; else echo $TRAVIS_BRANCH ; fi`
   - docker build -t post-processing-microservice .
   - docker tag post-processing-microservice $REPO:$TAG
   - docker push $REPO:$TAG
+  - docker tag post-processing-microservice $REPO:latest
+  - docker push $REPO:latest
+  - curl -u admin:admin "http://149.165.171.113:8080/job/Update-deployment/buildWithParameters?token=admin&TAG=$TAG&service=post-processing"

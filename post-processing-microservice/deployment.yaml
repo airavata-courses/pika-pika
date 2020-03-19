@@ -28,4 +28,4 @@ spec:
     spec:
       containers:
         - name: post-processing
-          image: akshayrajvanshi1992/post-processing-microservice-microservice:latest
+          image: akshayrajvanshi1992/post-processing-microservice:latest
