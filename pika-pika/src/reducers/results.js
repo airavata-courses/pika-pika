@@ -8,7 +8,6 @@ export default function (state = initialState, action) {
 	switch (type) {
 		case RESULT_SUCCESS:
 			return [
-				...state,
 				...payload
 			]
 		case RESULT_FAIL:

@@ -7,7 +7,6 @@ export default function (state = initialState, action) {
 	switch (type) {
 		case RADARFILE_DATA_SUCCESS: 
 			return [
-				...state,
 				...payload
             ]
 		case RADARFILE_DATA_FAIL: 

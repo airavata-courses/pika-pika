@@ -1,38 +1,39 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: pika-pika-frontend
 spec:
   selector:
     app: pikapika
-    tier: frontend
+    tier: pika-pika-frontend
   ports:
   - protocol: "TCP"
     port: 80
     targetPort: 80
+    nodePort: 80
   type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: pika-pika-frontend-deployment
 spec:
   selector:
     matchLabels:
       app: pikapika
-      tier: frontend
+      tier: pika-pika-frontend
       track: stable
   replicas: 1
   template:
     metadata:
       labels:
         app: pikapika
-        tier: frontend
+        tier: pika-pika-frontend
         track: stable
     spec:
       containers:
-      - name: nginx
-        image: "akshayrajvanshi1992/pika-pika-frontend:latest"
+      - name: pika-pika-frontend
+        image: "akshayrajvanshi1992/pika-pika-frontend-microservice:latest"
         lifecycle:
           preStop:
             exec:

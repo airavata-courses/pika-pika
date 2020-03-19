@@ -7,7 +7,6 @@ export default function (state = initialState, action) {
 	switch (type) {
 		case RADAR_DATA_SUCCESS: 
 			return [
-				...state,
 				...payload
             ]
 		case RADAR_DATA_FAIL: 
