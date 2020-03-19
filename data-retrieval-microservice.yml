@@ -27,4 +27,4 @@ spec:
     spec:
       containers:
         - name: data-retrieval
-          image: akshayrajvanshi1992/data-retrieval-microservice:latest
+          image: akshayrajvanshi1992/data-retrieval-microservice:${BUILD_VERSION}
