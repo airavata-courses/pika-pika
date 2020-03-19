@@ -1,5 +1,3 @@
-const producer = require('../connection').producer
-
 
 const addJobData = (jobData) => {
 	jobData['_id'] = 'J-' + jobData['jobID']
@@ -14,7 +12,7 @@ const updateJobData = (jobData) => {
 }
 
 const updateResult = (resultData) => {
-	if (resultData['data']['key'] == 'fetch') {
+	if (resultData['data']!==undefined && resultData['data']['key'] == 'fetch') {
 		return fetchResult(resultData)
 	}
 	resultData['status'] = 'Complete'
@@ -56,6 +54,7 @@ const fetchResult = (resultData) => {
 }
 
 let sendPayload = async (kafka_topic, message) => {
+	const producer = require('../connection').producer
 	let payloads = [
 		{
 			topic: kafka_topic,
