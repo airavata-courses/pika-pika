@@ -15,7 +15,10 @@ services:
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - export REPO=akshayrajvanshi1992/session-management-microservice
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "session-management-microservice" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "session-management-microservice" ]; then echo $TRAVIS_COMMIT; else echo $TRAVIS_BRANCH ; fi`
   - docker build -t session-management-microservice .
   - docker tag session-management-microservice $REPO:$TAG
   - docker push $REPO:$TAG
+  - docker tag session-management-microservice $REPO:latest
+  - docker push $REPO:latest
+  - curl -u admin:admin "http://149.165.171.113:8080/job/Update-deployment/buildWithParameters?token=admin&TAG=$TAG&service=session-management"
