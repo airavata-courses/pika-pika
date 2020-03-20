@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-var url = "mongodb://localhost:27017/pika-pika";
+var url = "mongodb://mongodbservice:27017/pika-pika";
 const consumer = require('./config/connection').consumer
 var signin = require('./auth/auth').signIn
 var register = require('./auth/auth').register
