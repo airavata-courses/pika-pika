@@ -29,7 +29,7 @@ try {
 			fromOffset: false
 		}
 	)
-	mongo.connect("mongodb://localhost:27017/session-management",
+	mongo.connect("mongodb://mongodbservice:27017/session-management",
 		{ useNewUrlParser: true, useUnifiedTopology: true },
 		(err, client) => {
 			if (err) {
