@@ -2,7 +2,7 @@ const kafka = require('kafka-node');
 let mongo = require('mongodb').MongoClient
 let process = require('process')
 const Producer = kafka.Producer;
-const Consumer = kafka.Consumer;
+const Consumer = kafka.ConsumerGroup;
 const client = new kafka.KafkaClient({kafkaHost: "kafka-service:9092"});
 let mongoClient = null
 let mongoDb = null
@@ -13,21 +13,22 @@ let consumer = null
 try {
 	producer = new Producer(client);
 	consumer = new Consumer(
-		client,
-		[
-			{ topic: 'data-retrieval-service', offset: 0, partition: 0 },
-			{ topic: 'model-execution-service', offset: 0, partition: 0 },
-			{ topic: 'post-processing-service', offset: 0, partition: 0 },
-			{ topic: 'session-management-service', offset: 0, partition: 0 }
-		],
-		{	groupId: 'session-management-group',
+		{	kafkaHost:'kafka-service:9092',
+			groupId: 'session-management-group',
 			autoCommit: true,
+			protocol: ["roundrobin"],
 			autoCommitIntervalMs: 5000,
 			fetchMaxWaitMs: 1000,
 			fetchMaxBytes: 1024*1024,
 			encoding: 'utf8',
-			fromOffset: false
-		}
+			fromOffset: "latest"
+		},
+		[
+			'data-retrieval-service',
+			'model-execution-service',
+			'post-processing-service',
+			'session-management-service'
+		]
 	)
 	mongo.connect("mongodb://localhost:27017/session-management",
 		{ useNewUrlParser: true, useUnifiedTopology: true },
