@@ -6,7 +6,7 @@ let producer = null
 let consumer = null
 
 try {
-	producer = new Producer(client);
+	producer = new Producer(client,{partitionerType: 2});
 	consumer = new Consumer(
 		{
 			kafkaHost: "kafka-service:9092",
