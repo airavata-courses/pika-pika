@@ -8,8 +8,8 @@ spec:
     app: mongo
     ports:
     - protocol: "TCP"
-        # Port accessible inside cluster
-        port: 27017
+    # Port accessible inside cluster
+      port: 27017
     type: LoadBalancer
 
 ---
