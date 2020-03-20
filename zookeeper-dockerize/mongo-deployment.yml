@@ -5,7 +5,7 @@ metadata:
     name: mongodbservice
 spec:
     selector:
-    app: mongo
+      app: mongo
     ports:
     - protocol: "TCP"
     # Port accessible inside cluster
