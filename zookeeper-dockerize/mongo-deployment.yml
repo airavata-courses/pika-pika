@@ -2,33 +2,33 @@
 kind: Service
 apiVersion: v1
 metadata:
-    name: mongodbservice
+  name: mongodbservice
 spec:
-    selector:
-      app: mongo
-    ports:
+  selector:
+    app: mongo
+  ports:
     - protocol: "TCP"
-    # Port accessible inside cluster
+      # Port accessible inside cluster
       port: 27017
-    type: LoadBalancer
+  type: LoadBalancer
 
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-    name: mongo-deployment
+  name: mongo-deployment
 spec:
-    selector:
+  selector:
     matchLabels:
-        app: mongo
-    replicas: 1 # tells deployment to run 2 pods matching the template
-    template:
+      app: mongo
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
     metadata:
-        labels:
+      labels:
         app: mongo
     spec:
-        containers:
+      containers:
         - name: mongo
-            image: mongo:latest
-            ports:
+          image: mongo:latest
+          ports:
             - containerPort: 27017
