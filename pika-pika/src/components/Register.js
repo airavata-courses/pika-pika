@@ -75,7 +75,7 @@ const SignUp = (props) => {
 			password: password
 		}
 		props.register(newUser)
-
+		window.location.href = '/';
 	}
 	return (
 		<Container component="main" maxWidth="xs">
@@ -87,60 +87,60 @@ const SignUp = (props) => {
 				<Typography component="h1" variant="h5">
 					Register
         </Typography>
-			<Card style={{ padding: "10px" }}>
-				<form className={classes.form} noValidate onSubmit={onSubmit}>
-					<Grid container spacing={2}>
-						<Grid item xs={12}>
-							<TextField
-								variant="outlined"
-								required
-								fullWidth
-								id="email"
-								label="Email Address"
-								name="email"
-								autoComplete="email"
-								value={email}
-								onChange={e => setEmail(e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							<TextField
-								variant="outlined"
-								required
-								fullWidth
-								name="password"
-								label="Password"
-								type="password"
-								id="password"
-								autoComplete="current-password"
-								value={password}
-								onChange={e => setPassword(e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							{/* <FormControlLabel
+				<Card style={{ padding: "10px" }}>
+					<form className={classes.form} noValidate onSubmit={onSubmit}>
+						<Grid container spacing={2}>
+							<Grid item xs={12}>
+								<TextField
+									variant="outlined"
+									required
+									fullWidth
+									id="email"
+									label="Email Address"
+									name="email"
+									autoComplete="email"
+									value={email}
+									onChange={e => setEmail(e.target.value)}
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									variant="outlined"
+									required
+									fullWidth
+									name="password"
+									label="Password"
+									type="password"
+									id="password"
+									autoComplete="current-password"
+									value={password}
+									onChange={e => setPassword(e.target.value)}
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								{/* <FormControlLabel
 								control={<Checkbox value="allowExtraEmails" color="primary" />}
 								label="I want to receive inspiration, marketing promotions and updates via email."
 							/> */}
+							</Grid>
 						</Grid>
-					</Grid>
-					<Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						color="primary"
-						className={classes.submit}
-					>
-						Sign Up
+						<Button
+							type="submit"
+							fullWidth
+							variant="contained"
+							color="primary"
+							className={classes.submit}
+						>
+							Sign Up
           </Button>
-					<Grid container justify="flex-end">
-						<Grid item>
-							<Link href="#" variant="body2">
-								Already have an account? Sign in
+						<Grid container justify="flex-end">
+							<Grid item>
+								<Link href="/" variant="body2">
+									Already have an account? Sign in
               </Link>
+							</Grid>
 						</Grid>
-					</Grid>
-				</form>
+					</form>
 				</Card>
 			</div>
 			<Box mt={5}>
