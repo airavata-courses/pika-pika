@@ -46,8 +46,8 @@ function GoogleMap(props){
         //     navigator.geolocation.getCurrentPosition(displayLocationInfo)
         //   }
         //   function displayLocationInfo(position) {
-            // const lon = position.coords.longitude
-            // const lat = position.coords.latitude
+            const lon = -86.5264
+            const lat = 39.1653
             setLoc({lat:39.1653,lng:-86.5264})
             console.log(`longitude: ${lon} | latitude: ${lat}`)
       
