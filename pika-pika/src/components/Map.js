@@ -42,18 +42,18 @@ function GoogleMap(props){
 
 
     useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(displayLocationInfo)
-          }
-          function displayLocationInfo(position) {
-            const lon = position.coords.longitude
-            const lat = position.coords.latitude
-            setLoc({lat:lat,lng:lon})
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(displayLocationInfo)
+        //   }
+        //   function displayLocationInfo(position) {
+            // const lon = position.coords.longitude
+            // const lat = position.coords.latitude
+            setLoc({lat:39.1653,lng:-86.5264})
             console.log(`longitude: ${lon} | latitude: ${lat}`)
       
             props.getweather({lat:lat,lon:lon})
             console.log(store.getState())
-          }
+          // }
     },[])
 
     return (
