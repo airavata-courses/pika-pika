@@ -1,0 +1,9 @@
+*/Lib/site-packages/*
+
+!*/Lib/site-packages/pip
+!*/Lib/site-packages/pip-19.0.3.dist-info
+!*/Lib/site-packages/pkg_resources
+!*/Lib/site-packages/setuptools
+!*/Lib/site-packages/setuptools-40.8.0.dist-info
+!*/Lib/site-packages/__pycache__
+!*/Lib/site-packages/easy_install.py
